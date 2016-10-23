@@ -1,0 +1,17 @@
+<body>
+<div class="container">
+    <header>
+        <h1>Patientslist</h1>
+
+        <form class="new-patient">
+            <input type="text" name="name" placeholder="First name" />
+        </form>
+    </header>
+
+    <ul>
+        {{#each patients}}
+            {{> patient}}
+        {{/each}}
+    </ul>
+</div>
+</body>
