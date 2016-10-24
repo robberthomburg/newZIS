@@ -1,6 +1,7 @@
 /**
  * Created by robberthomburg on 23-10-16.
  */
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
 import { Patients } from '../api/patients.js';
@@ -28,6 +29,8 @@ Template.body.events({
         Patients.insert({
             name,
             createdAt: new Date(), // current time
+            owner: Meteor.userId(),
+            username: Meteor.user().username,
         });
 
         // Clear form

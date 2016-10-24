@@ -3,9 +3,13 @@
     <header>
         <h1>Patientslist</h1>
 
-        <form class="new-patient">
-            <input type="text" name="name" placeholder="First name" />
-        </form>
+        {{> loginButtons}}
+
+        {{#if currentUser}}
+             <form class="new-patient">
+                <input type="text" name="name" placeholder="First name" />
+            </form>
+        {{/if}}
     </header>
 
     <ul>
