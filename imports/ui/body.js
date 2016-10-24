@@ -9,6 +9,10 @@ import { Patients } from '../api/patients.js';
 import './patient.js';
 import './body.html';
 
+Template.body.onCreated(function bodyOnCreated() {
+   Meteor.subscribe('patients');
+});
+
 Template.body.helpers({
     patients () {
         return Patients.find({}, { sort: { name: 1}});
@@ -26,12 +30,7 @@ Template.body.events({
         const name = target.name.value;
 
         // Insert a patient into the collection
-        Patients.insert({
-            name,
-            createdAt: new Date(), // current time
-            owner: Meteor.userId(),
-            username: Meteor.user().username,
-        });
+       Meteor.call('patients.insert', name);
 
         // Clear form
         target.name.value = '';
