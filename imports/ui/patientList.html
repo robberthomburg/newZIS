@@ -1,14 +1,18 @@
 <template name="patientList">
     <h1>Patienten</h1>
-    {{#if currentUser}}
-        <form class="new-patient">
-            <input type="text" name="name" placeholder="First name" />
-        </form>
-    {{/if}}
+
     <ul>
         {{#each patients}}
-            {{> patient}}
+            <li>
+                <button class="delete">&times;</button>
+                <span class="text">{{name}} - <strong>{{username}}</strong></span>
+            </li>
         {{/each}}
     </ul>
+    {{#if currentUser}}
+        <a href="/patients/new">New Patient</a>
+    {{/if}}
+
 
 </template>
+

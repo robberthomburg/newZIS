@@ -6,11 +6,10 @@ import { Template } from 'meteor/templating';
 import { Patients } from '../api/patients.js';
 
 import './patientList.html';
-import './patient.js';
+import './patientNew.js';
 
 
 Template.patientList.onCreated(function() {
-    console.log('de juiste functie gaat af');
     Meteor.subscribe('patients');
 });
 
@@ -19,21 +18,13 @@ Template.patientList.helpers({
     patients () {
         return Patients.find({}, { sort: { name: 1}});
     },
+    isOwner() {
+        return this.owner === Meteor.userId();
+    },
 });
 
 Template.patientList.events({
-    'submit .new-patient'(event) {
-        // Prevent default browser form submit
-        event.preventDefault();
-
-        // Get value from form element
-        const target = event.target;
-        const name = target.name.value;
-
-        // Insert a patient into the collection
-        Meteor.call('patients.insert', name);
-
-        // Clear form
-        target.name.value = '';
+    'click .delete' () {
+        Meteor.call('patients.remove', this._id);
     },
 });

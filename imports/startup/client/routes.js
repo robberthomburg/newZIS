@@ -6,6 +6,7 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 import '../../ui/body.js'
 import '../../ui/patientList.js'
+import '../../ui/patientNew.js'
 
 // home page
 FlowRouter.route('/', {
@@ -28,16 +29,9 @@ patientListRoute.route('/', {
     }
 });
 
-// patienten detail pagina
-
-patientListRoute.route('/:patientID', {
+patientListRoute.route('/new', {
     action: function(){
-        BlazeLayout.render('appBody', {content:"patient"});
-    }
-});
-
-patientListRoute.route('/:patientID/edit', {
-    action: function(){
-        BlazeLayout.render('appBody', {content:"patient"});
+        console.log("route naar nieuwe patient");
+        BlazeLayout.render('appBody', {content:"patientNew"});
     }
 });
