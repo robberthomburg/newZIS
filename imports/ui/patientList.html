@@ -1,0 +1,14 @@
+<template name="patientList">
+    <h1>Patienten</h1>
+    {{#if currentUser}}
+        <form class="new-patient">
+            <input type="text" name="name" placeholder="First name" />
+        </form>
+    {{/if}}
+    <ul>
+        {{#each patients}}
+            {{> patient}}
+        {{/each}}
+    </ul>
+
+</template>

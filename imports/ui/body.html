@@ -1,21 +1,13 @@
+<template name="appBody">
 <body>
 <div class="container">
-    <header>
-        <h1>Patientslist</h1>
-
+<header>
         {{> loginButtons}}
+    <a href="/">home</a>
+    <a href="/patients">patienten</a>
+</header>
+        {{>Template.dynamic template=content}}
 
-        {{#if currentUser}}
-             <form class="new-patient">
-                <input type="text" name="name" placeholder="First name" />
-            </form>
-        {{/if}}
-    </header>
-
-    <ul>
-        {{#each patients}}
-            {{> patient}}
-        {{/each}}
-    </ul>
 </div>
 </body>
+</template>
