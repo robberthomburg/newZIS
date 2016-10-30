@@ -16,8 +16,10 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'patients.insert'(name) {
+    'patients.insert'(name, surname, dateofbirth) {
         check(name, String);
+        check(surname, String);
+        check(dateofbirth, String);
 
         // Make sure the user is logged in before inserting a task
         if (! this.userId) {
@@ -26,6 +28,28 @@ Meteor.methods({
 
         Patients.insert({
             name,
+            surname,
+            dateofbirth,
+            createdAt: new Date(),
+            owner: this.userId,
+            username: Meteor.users.findOne(this.userId).username,
+        });
+    },
+    'patients.update'(name, surname, dateofbirth) {
+        check(name, String);
+        check(surname, String);
+        check(dateofbirth, String);
+
+        // Make sure the user is logged in before inserting a task
+        if (! this.userId) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        Patients.update({
+            _id: this._id},{
+            name,
+            surname,
+            dateofbirth,
             createdAt: new Date(),
             owner: this.userId,
             username: Meteor.users.findOne(this.userId).username,
@@ -49,4 +73,5 @@ Meteor.methods({
 
         Patients.update(patientId, { $set: { private: setToPrivate } });
     },
+
 });

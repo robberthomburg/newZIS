@@ -1,18 +1,38 @@
 <template name="patientList">
     <h1>Patienten</h1>
 
-    <ul>
-        {{#each patients}}
-            <li>
-                <button class="delete">&times;</button>
-                <span class="text">{{name}} - <strong>{{username}}</strong></span>
-            </li>
-        {{/each}}
-    </ul>
-    {{#if currentUser}}
-        <a href="/patients/new">New Patient</a>
-    {{/if}}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Achternaam</th>
+                <th>Voornaam</th>
+                <th>geboorte datum</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each patients}}
+                <tr>
+                    <th>
+                        <!-- achternaam -->
+                        <span class="text"><a href="/patients/{{_id}}">{{surname}}</a></span>
+                    </th>
+                    <td>
+                        <!-- voornaam -->
+                        <span class="text">{{name}}</span>
+                    </td>
+                    <td>
+                        <!-- geboortedatum -->
+                        <span class="text">{{dateofbirth}}</span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-warning delete">Verwijder</button>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
 
-
+    </table>
+    <a href="/patients/new">New Patient</a>
 </template>
 

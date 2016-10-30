@@ -7,6 +7,7 @@ import { Patients } from '../api/patients.js';
 
 import './patientList.html';
 import './patientNew.js';
+import './patientEdit.js';
 
 
 Template.patientList.onCreated(function() {
@@ -16,7 +17,7 @@ Template.patientList.onCreated(function() {
 
 Template.patientList.helpers({
     patients () {
-        return Patients.find({}, { sort: { name: 1}});
+        return Patients.find({}, { sort: { surname: 1}});
     },
     isOwner() {
         return this.owner === Meteor.userId();

@@ -22,3 +22,5 @@ accounts-ui
 accounts-password
 kadira:flow-router
 kadira:blaze-layout
+twbs:bootstrap
+useraccounts:bootstrap
